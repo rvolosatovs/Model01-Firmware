@@ -6,73 +6,27 @@
 #define BUILD_INFORMATION "locally built"
 #endif
 
-
-/**
- * These #include directives pull in the Kaleidoscope firmware core,
- * as well as the Kaleidoscope plugins we use in the Model 01's firmware
- */
-
-
-// The Kaleidoscope core
 #include "Kaleidoscope.h"
 
-// Support for storing the keymap in EEPROM
-#include "Kaleidoscope-EEPROM-Settings.h"
-#include "Kaleidoscope-EEPROM-Keymap.h"
-
-// Support for communicating with the host via a simple Serial protocol
-#include "Kaleidoscope-FocusSerial.h"
-
-// Support for keys that move the mouse
-#include "Kaleidoscope-MouseKeys.h"
-
-// Support for macros
-#include "Kaleidoscope-Macros.h"
-
-// Support for controlling the keyboard's LEDs
-#include "Kaleidoscope-LEDControl.h"
-
-// Support for "Numpad" mode, which is mostly just the Numpad specific LED mode
-#include "Kaleidoscope-NumPad.h"
-
-// Support for the "Boot greeting" effect, which pulses the 'LED' button for 10s
-// when the keyboard is connected to a computer (or that computer is powered on)
-#include "Kaleidoscope-LEDEffect-BootGreeting.h"
-
-// Support for LED modes that set all LEDs to a single color
-#include "Kaleidoscope-LEDEffect-SolidColor.h"
-
-// Support for an LED mode that makes all the LEDs 'breathe'
-#include "Kaleidoscope-LEDEffect-Breathe.h"
-
-// Support for an LED mode that makes a red pixel chase a blue pixel across the keyboard
-#include "Kaleidoscope-LEDEffect-Chase.h"
-
-// Support for LED modes that pulse the keyboard's LED in a rainbow pattern
-#include "Kaleidoscope-LEDEffect-Rainbow.h"
-
-// Support for an LED mode that lights up the keys as you press them
-#include "Kaleidoscope-LED-Stalker.h"
-
-// Support for an LED mode that prints the keys you press in letters 4px high
-#include "Kaleidoscope-LED-AlphaSquare.h"
-
-// Support for shared palettes for other plugins, like Colormap below
-#include "Kaleidoscope-LED-Palette-Theme.h"
-
-// Support for an LED mode that lets one configure per-layer color maps
 #include "Kaleidoscope-Colormap.h"
-
-// Support for Keyboardio's internal keyboard testing mode
+#include "Kaleidoscope-EEPROM-Keymap.h"
+#include "Kaleidoscope-EEPROM-Settings.h"
+#include "Kaleidoscope-FocusSerial.h"
 #include "Kaleidoscope-HardwareTestMode.h"
-
-// Support for host power management (suspend & wakeup)
 #include "Kaleidoscope-HostPowerManagement.h"
-
-// Support for magic combos (key chords that trigger an action)
+#include "Kaleidoscope-LED-AlphaSquare.h"
+#include "Kaleidoscope-LED-Palette-Theme.h"
+#include "Kaleidoscope-LED-Stalker.h"
+#include "Kaleidoscope-LEDControl.h"
+#include "Kaleidoscope-LEDEffect-BootGreeting.h"
+#include "Kaleidoscope-LEDEffect-Breathe.h"
+#include "Kaleidoscope-LEDEffect-Chase.h"
+#include "Kaleidoscope-LEDEffect-Rainbow.h"
+#include "Kaleidoscope-LEDEffect-SolidColor.h"
+#include "Kaleidoscope-Macros.h"
 #include "Kaleidoscope-MagicCombo.h"
-
-// Support for USB quirks, like changing the key state report protocol
+#include "Kaleidoscope-MouseKeys.h"
+#include "Kaleidoscope-NumPad.h"
 #include "Kaleidoscope-USB-Quirks.h"
 
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
