@@ -28,6 +28,7 @@
 #include "Kaleidoscope-MagicCombo.h"
 #include "Kaleidoscope-MouseKeys.h"
 #include "Kaleidoscope-NumPad.h"
+#include "Kaleidoscope-TypingBreaks.h"
 #include "Kaleidoscope-USB-Quirks.h"
 
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
@@ -400,6 +401,8 @@ KALEIDOSCOPE_INIT_PLUGINS(
   // FocusEEPROMCommand adds a set of Focus commands, which are very helpful in
   // both debugging, and in backing up one's EEPROM contents.
   FocusEEPROMCommand,
+
+  TypingBreaks,
 
   // The boot greeting effect pulses the LED button for 10 seconds after the
   // keyboard is first connected
