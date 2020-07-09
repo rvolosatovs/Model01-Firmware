@@ -30,6 +30,7 @@
 #include "Kaleidoscope-NumPad.h"
 #include "Kaleidoscope-TypingBreaks.h"
 #include "Kaleidoscope-USB-Quirks.h"
+#include "Kaleidoscope-Qukeys.h"
 
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
   * The names aren't particularly important. What is important is that each
@@ -384,6 +385,8 @@ USE_MAGIC_COMBOS({.action = toggleKeyboardProtocol,
 // The order can be important. For example, LED effects are
 // added in the order they're listed here.
 KALEIDOSCOPE_INIT_PLUGINS(
+  Qukeys,
+
   // The EEPROMSettings & EEPROMKeymap plugins make it possible to have an
   // editable keymap in EEPROM.
   EEPROMSettings,
