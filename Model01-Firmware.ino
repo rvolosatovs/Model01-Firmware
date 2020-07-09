@@ -14,6 +14,7 @@
 #include "Kaleidoscope-FocusSerial.h"
 #include "Kaleidoscope-HardwareTestMode.h"
 #include "Kaleidoscope-HostPowerManagement.h"
+#include "Kaleidoscope-IdleLEDs.h"
 #include "Kaleidoscope-LED-AlphaSquare.h"
 #include "Kaleidoscope-LED-Palette-Theme.h"
 #include "Kaleidoscope-LED-Stalker.h"
@@ -410,6 +411,8 @@ KALEIDOSCOPE_INIT_PLUGINS(
 
   // LEDControl provides support for other LED modes
   LEDControl,
+
+  IdleLEDs,
 
   // We start with the LED effect that turns off all the LEDs.
   LEDOff,
