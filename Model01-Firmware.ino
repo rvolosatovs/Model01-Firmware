@@ -23,7 +23,6 @@
 #include "Kaleidoscope-MagicCombo.h"
 #include "Kaleidoscope-MouseKeys.h"
 #include "Kaleidoscope-NumPad.h"
-#include "Kaleidoscope-TypingBreaks.h"
 #include "Kaleidoscope-USB-Quirks.h"
 #include "Kaleidoscope-Qukeys.h"
 
@@ -385,8 +384,6 @@ KALEIDOSCOPE_INIT_PLUGINS(
   // both debugging, and in backing up one's EEPROM contents.
   FocusEEPROMCommand,
 
-  TypingBreaks,
-
   // The boot greeting effect pulses the LED button for 10 seconds after the
   // keyboard is first connected
   BootGreetingEffect,
@@ -476,6 +473,12 @@ void setup() {
   // maps for. To make things simple, we set it to five layers, which is how
   // many editable layers we have (see above).
   ColormapEffect.max_layers(5);
+
+  Qukeys.setHoldTimeout(100);
+  QUKEYS(
+    kaleidoscope::plugin::Qukey(0, KeyAddr(2, 7), Key_Escape),
+    kaleidoscope::plugin::Qukey(0, KeyAddr(2, 8), Key_Escape),
+  )
 }
 
 /** loop is the second of the standard Arduino sketch functions.
