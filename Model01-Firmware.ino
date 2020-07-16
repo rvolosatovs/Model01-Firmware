@@ -15,6 +15,7 @@
 #include "Kaleidoscope-HardwareTestMode.h"
 #include "Kaleidoscope-HostPowerManagement.h"
 #include "Kaleidoscope-IdleLEDs.h"
+#include "Kaleidoscope-LED-ActiveModColor.h"
 #include "Kaleidoscope-LED-Palette-Theme.h"
 #include "Kaleidoscope-LEDControl.h"
 #include "Kaleidoscope-LEDEffect-BootGreeting.h"
@@ -23,8 +24,9 @@
 #include "Kaleidoscope-MagicCombo.h"
 #include "Kaleidoscope-MouseKeys.h"
 #include "Kaleidoscope-NumPad.h"
-#include "Kaleidoscope-USB-Quirks.h"
+#include "Kaleidoscope-OneShot.h"
 #include "Kaleidoscope-Qukeys.h"
+#include "Kaleidoscope-USB-Quirks.h"
 
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
   * The names aren't particularly important. What is important is that each
@@ -180,14 +182,14 @@ KEYMAPS(
    Key_Backtick,               Key_Q,                  Key_W,                    Key_E,                    Key_R,              Key_T,              Key_Tab,
    Key_PageUp,                 Key_A,                  Key_S,                    Key_D,                    Key_F,              Key_G,
    Key_PageDown,               Key_Z,                  Key_X,                    Key_C,                    Key_V,              Key_B,              Key_Escape,
-   Key_LeftControl,            Key_Backspace,          Key_LeftGui,              Key_LeftShift,
+   Key_LeftControl,            Key_Backspace,          OSM(LeftGui),             OSM(LeftShift),
    ShiftToLayer(FUNCTION),
 
    ___,                        Key_6,                  Key_7,                    Key_8,                    Key_9,              Key_0,              LockLayer(NUMPAD),
    Key_Enter,                  Key_Y,                  Key_U,                    Key_I,                    Key_O,              Key_P,              Key_Equals,
                                Key_H,                  Key_J,                    Key_K,                    Key_L,              Key_Semicolon,      Key_Quote,
    Key_RightAlt,               Key_N,                  Key_M,                    Key_Comma,                Key_Period,         Key_Slash,          Key_Minus,
-   Key_RightShift,             Key_LeftAlt,            Key_Spacebar,             Key_RightControl,
+   OSM(RightShift),            OSM(LeftAlt),           Key_Spacebar,             Key_RightControl,
    ShiftToLayer(FUNCTION)),
 
 #else
@@ -224,7 +226,7 @@ KEYMAPS(
    Consumer_ScanPreviousTrack, Key_F6,                 Key_F7,                   Key_F8,                   Key_F9,             Key_F10,            Key_F11,
    Consumer_PlaySlashPause,    Consumer_ScanNextTrack, Key_LeftCurlyBracket,     Key_RightCurlyBracket,    Key_LeftBracket,    Key_RightBracket,   Key_F12,
                                Key_LeftArrow,          Key_DownArrow,            Key_UpArrow,              Key_RightArrow,     ___,                ___,
-   Key_PcApplication,          Key_Escape,             Key_LeftParen,            Key_RightParen,           ___,                  Key_Backslash,      Key_Pipe,
+   Key_PcApplication,          Key_Escape,             Key_LeftParen,            Key_RightParen,           ___,                Key_Backslash,      Key_Pipe,
    ___,                        Consumer_Mute,          Consumer_VolumeDecrement, Consumer_VolumeIncrement,
    ___)
 ) // KEYMAPS(
@@ -434,7 +436,11 @@ KALEIDOSCOPE_INIT_PLUGINS(
   // comfortable - or able - to do automatically, but can be useful
   // nevertheless. Such as toggling the key report protocol between Boot (used
   // by BIOSes) and Report (NKRO).
-  USBQuirks
+  USBQuirks,
+
+  OneShot,
+
+  ActiveModColorEffect
 );
 
 /** The 'setup' function is one of the two standard Arduino sketch functions.
@@ -474,10 +480,9 @@ void setup() {
   // many editable layers we have (see above).
   ColormapEffect.max_layers(5);
 
-  Qukeys.setHoldTimeout(100);
   QUKEYS(
-    kaleidoscope::plugin::Qukey(0, KeyAddr(2, 7), Key_Escape),
-    kaleidoscope::plugin::Qukey(0, KeyAddr(2, 8), Key_Escape),
+    kaleidoscope::plugin::Qukey(0, KeyAddr(0, 7), Key_Escape),
+    kaleidoscope::plugin::Qukey(0, KeyAddr(0, 8), Key_Escape),
   )
 }
 
