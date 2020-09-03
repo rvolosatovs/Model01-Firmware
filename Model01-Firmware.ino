@@ -11,6 +11,7 @@
 #include "Kaleidoscope-Colormap.h"
 #include "Kaleidoscope-EEPROM-Keymap.h"
 #include "Kaleidoscope-EEPROM-Settings.h"
+#include "Kaleidoscope-Escape-OneShot.h"
 #include "Kaleidoscope-FocusSerial.h"
 #include "Kaleidoscope-HardwareTestMode.h"
 #include "Kaleidoscope-HostPowerManagement.h"
@@ -439,6 +440,7 @@ KALEIDOSCOPE_INIT_PLUGINS(
   USBQuirks,
 
   OneShot,
+  EscapeOneShot,
 
   ActiveModColorEffect
 );
@@ -483,7 +485,10 @@ void setup() {
   QUKEYS(
     kaleidoscope::plugin::Qukey(0, KeyAddr(0, 7), Key_Escape),
     kaleidoscope::plugin::Qukey(0, KeyAddr(0, 8), Key_Escape),
-  )
+  );
+
+  OneShot.time_out = 1000;
+  OneShot.hold_time_out = 100;
 }
 
 /** loop is the second of the standard Arduino sketch functions.
